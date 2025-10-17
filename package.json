@@ -1,0 +1,35 @@
+{
+  "name": "taddy-podcast-zapier",
+  "version": "1.0.0",
+  "description": "Zapier integration for Taddy Podcast API - access 4M+ podcasts and 180M+ episodes",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --testTimeout=10000 --detectOpenHandles",
+    "test:watch": "jest --watch"
+  },
+  "keywords": [
+    "zapier",
+    "podcast",
+    "taddy",
+    "podcast-api",
+    "episodes",
+    "transcripts"
+  ],
+  "author": "Taddy Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shimmer-labs/podcast-date-zapier-integration.git"
+  },
+  "dependencies": {
+    "zapier-platform-core": "15.19.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "zapier-platform-cli": "^15.0.0"
+  },
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
+  }
+}
