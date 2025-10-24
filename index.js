@@ -3,6 +3,7 @@ const authentication = require('./authentication');
 // Implemented
 const findPodcast = require('./searches/find_podcast');
 const searchPodcasts = require('./searches/search_podcasts');
+const getEpisodes = require('./searches/get_episodes');
 const generateTranscript = require('./creates/generate_transcript');
 
 // TODO: Implement these
@@ -20,7 +21,8 @@ module.exports = {
 
   searches: {
     [findPodcast.key]: findPodcast,
-    [searchPodcasts.key]: searchPodcasts
+    [searchPodcasts.key]: searchPodcasts,
+    [getEpisodes.key]: getEpisodes
   },
 
   creates: {
