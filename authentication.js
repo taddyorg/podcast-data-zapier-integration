@@ -1,8 +1,9 @@
 const testAuth = async (z, bundle) => {
-  // Test authentication by calling getApiRequestsRemaining query
+  // Test authentication by calling both quota queries
   const query = `
     query {
       getApiRequestsRemaining
+      getTranscriptCreditsRemaining
     }
   `;
 
@@ -28,9 +29,10 @@ const testAuth = async (z, bundle) => {
     );
   }
 
-  // Return the API requests remaining as confirmation
+  // Return both quotas
   return {
-    apiRequestsRemaining: response.data.data.getApiRequestsRemaining
+    apiRequestsRemaining: response.data.data.getApiRequestsRemaining,
+    transcriptCreditsRemaining: response.data.data.getTranscriptCreditsRemaining
   };
 };
 
@@ -53,5 +55,5 @@ module.exports = {
     }
   ],
   test: testAuth,
-  connectionLabel: '{{apiRequestsRemaining}} API requests remaining'
+  connectionLabel: '{{apiRequestsRemaining}} API requests, {{transcriptCreditsRemaining}} transcript credits'
 };

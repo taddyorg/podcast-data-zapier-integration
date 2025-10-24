@@ -3,9 +3,9 @@ const authentication = require('./authentication');
 // Implemented
 const findPodcast = require('./searches/find_podcast');
 const searchPodcasts = require('./searches/search_podcasts');
+const generateTranscript = require('./creates/generate_transcript');
 
 // TODO: Implement these
-// const generateTranscript = require('./creates/generate_transcript');
 // const newEpisodePoll = require('./triggers/new_episode_polling');
 
 module.exports = {
@@ -24,6 +24,6 @@ module.exports = {
   },
 
   creates: {
-    // [generateTranscript.key]: generateTranscript
+    [generateTranscript.key]: generateTranscript
   }
 };

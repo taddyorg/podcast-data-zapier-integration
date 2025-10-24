@@ -63,6 +63,50 @@ const EPISODE_EXTENDED_FRAGMENT = `
   }
 `;
 
+const EPISODE_WITH_TRANSCRIPT_FRAGMENT = `
+  uuid
+  name
+  description(shouldStripHtmlTags: true)
+  audioUrl
+  imageUrl
+  datePublished
+  duration
+  episodeNumber
+  seasonNumber
+  fileType
+  podcastSeries {
+    uuid
+    name
+    imageUrl
+  }
+  transcript
+`;
+
+const EPISODE_WITH_DETAILED_TRANSCRIPT_FRAGMENT = `
+  uuid
+  name
+  description(shouldStripHtmlTags: true)
+  audioUrl
+  imageUrl
+  datePublished
+  duration
+  episodeNumber
+  seasonNumber
+  fileType
+  podcastSeries {
+    uuid
+    name
+    imageUrl
+  }
+  transcriptWithSpeakersAndTimecodes(style: $style) {
+    id
+    text
+    speaker
+    startTimecode
+    endTimecode
+  }
+`;
+
 // Zapier dropdown choices for genres
 const GENRE_CHOICES = [
   { sample: 'Arts', value: 'PODCASTSERIES_ARTS', label: 'Arts' },
@@ -286,6 +330,8 @@ module.exports = {
   PODCAST_SERIES_EXTENDED_FRAGMENT,
   EPISODE_FRAGMENT,
   EPISODE_EXTENDED_FRAGMENT,
+  EPISODE_WITH_TRANSCRIPT_FRAGMENT,
+  EPISODE_WITH_DETAILED_TRANSCRIPT_FRAGMENT,
 
   // Dropdown Choices
   GENRE_CHOICES,
