@@ -5,9 +5,7 @@ const findPodcast = require('./searches/find_podcast');
 const searchPodcasts = require('./searches/search_podcasts');
 const getEpisodes = require('./searches/get_episodes');
 const generateTranscript = require('./creates/generate_transcript');
-
-// TODO: Implement these
-// const newEpisodePoll = require('./triggers/new_episode_polling');
+const newEpisodePoll = require('./triggers/new_episode_polling');
 
 module.exports = {
   version: require('./package.json').version,
@@ -16,7 +14,7 @@ module.exports = {
   authentication: authentication,
 
   triggers: {
-    // [newEpisodePoll.key]: newEpisodePoll
+    [newEpisodePoll.key]: newEpisodePoll
   },
 
   searches: {
