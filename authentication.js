@@ -55,5 +55,5 @@ module.exports = {
     }
   ],
   test: testAuth,
-  connectionLabel: '{{apiRequestsRemaining}} API requests, {{transcriptCreditsRemaining}} transcript credits'
+  connectionLabel: 'API: {{apiRequestsRemaining}} | Transcripts: {{transcriptCreditsRemaining}}'
 };
