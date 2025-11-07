@@ -1,219 +1,146 @@
 # Taddy Podcast API - Zapier Integration
 
-Zapier integration for [Taddy Podcast API](https://taddy.org/developers/podcast-api) - access 4M+ podcasts and 180M+ episodes with automated workflows.
+Automate podcast workflows with access to 4M+ podcasts and 180M+ episodes. Search, track, and extract podcast data using [Taddy's Podcast API](https://taddy.org/developers/podcast-api) directly in your Zaps.
 
-## Features
+## What You Can Do
 
-- **Authentication** - API Key (User ID + API Key)
-- **Searches** - Find podcasts by UUID, name, RSS URL, or iTunes ID
-- **Actions** - Generate episode transcripts (coming soon)
-- **Triggers** - New episodes via polling (coming soon)
-- **Future** - Webhook triggers when filtering is available
-
-## Project Status
-
-### ✅ Completed
-- [x] Project structure and setup
-- [x] Authentication (API Key with userId + apiKey)
-- [x] GraphQL utility functions
-- [x] Constants from n8n integration
-- [x] Find Podcast search (by UUID/name/RSS/iTunes ID)
-
-### 🚧 In Progress (Next Steps)
-- [ ] Search Podcasts (with filters)
-- [ ] Generate Transcript action
-- [ ] New Episode polling trigger
-- [ ] Webhook placeholder (for future when filtering available)
-- [ ] Search Episodes
-- [ ] Find Episode
-- [ ] Tests
-
-### 📋 Future Enhancements
-- [ ] REST Hook triggers (when Taddy adds webhook filtering)
-- [ ] Get Top Charts
-- [ ] Get Popular Podcasts
-- [ ] Get Episode Chapters
-
-## Prerequisites
-
-- Node.js >= 18
-- npm >= 9
-- Taddy API account ([sign up](https://taddy.org/signup/developers))
-- Zapier CLI: `npm install -g zapier-platform-cli`
+- **Track new episodes** - Get notified when podcasts publish new episodes
+- **Search podcasts** - Find podcasts by keywords, genre, language, and more
+- **Search episodes** - Find specific episodes with advanced filters
+- **Get transcripts** - Generate or retrieve episode transcripts automatically
+- **Access charts** - Pull data from podcast top charts by country and genre
+- **Batch operations** - Retrieve multiple podcasts or episodes in one request
 
 ## Installation
 
-```bash
-# Install dependencies
-npm install
+1. **In Zapier:** Search for "Taddy Podcast API" when creating a Zap
+2. **Connect your account:** You'll need your Taddy API credentials:
+   - User ID
+   - API Key
 
-# Run tests
-npm test
-```
+Get your credentials at [taddy.org/dashboard](https://taddy.org/dashboard). No account? [Sign up here](https://taddy.org/signup/developers).
+
+## Authentication
+
+This integration uses API Key authentication with two credentials:
+
+- **User ID** - Your Taddy API User ID (found in your dashboard)
+- **API Key** - Your Taddy API Key (found in your dashboard)
+
+Both are required to authenticate API requests.
+
+## Available Operations
+
+### Triggers
+
+**New Episode Polling**
+- Monitors specified podcasts for new episodes
+- Checks every 1-15 minutes (configurable)
+- Automatically deduplicates episodes by UUID
+- Perfect for: Content curation, notifications, RSS alternatives
+
+### Searches
+
+**Find Podcast**
+- Find a specific podcast by UUID, name, RSS URL, or iTunes ID
+- Returns single podcast with full metadata
+- Use for: Looking up known podcasts
+
+**Search Podcasts**
+- Full-text search across 4M+ podcasts
+- Filters: genres, languages, content type, date ranges, popularity
+- Returns up to 25 results
+- Use for: Discovery, research, content planning
+
+**Find Episode**
+- Find a specific episode by UUID or name
+- Requires podcast context (name or UUID)
+- Returns single episode with metadata
+- Use for: Looking up known episodes
+
+**Search Episodes**
+- Full-text search across 180M+ episodes
+- Filters: genres, languages, date ranges, duration, transcripts
+- Returns up to 25 results
+- Use for: Content research, episode discovery
+
+**Get Episodes for Podcast**
+- Retrieve latest episodes from a specific podcast
+- Input: UUID, name, RSS URL, or iTunes ID
+- Returns episode list sorted by date
+- Use for: Monitoring specific shows
+
+**Get Popular Podcasts**
+- Discover trending podcasts
+- Filters: genre, language
+- Sorted by popularity
+- Use for: Discovery, trend analysis
+
+**Get Top Charts**
+- Access daily podcast charts
+- Filter by country and genre
+- Includes both podcast and episode charts
+- Use for: Tracking rankings, trend analysis
+
+**Get Multiple Podcasts**
+- Batch retrieve multiple podcasts by UUIDs
+- Efficient for bulk operations
+- Use for: Processing lists of podcasts
+
+**Get Multiple Episodes**
+- Batch retrieve multiple episodes by UUIDs
+- Efficient for bulk operations
+- Use for: Processing episode lists
+
+### Actions
+
+**Generate Transcript**
+- Extract or generate episode transcripts
+- Includes speaker attribution and timecodes
+- Choose between paragraph or utterance format
+- **Note:** Generating transcripts uses Taddy API transcript credits
+
+## Use Cases
+
+**Content Curation**
+- Monitor podcasts → Filter by keywords → Post to social media
+- Track industry podcasts → Generate summaries → Send to Slack
+
+**Research & Analysis**
+- Search episodes → Extract transcripts → Analyze with AI
+- Pull top charts → Store in spreadsheet → Track trends
+
+**Notifications & Alerts**
+- New episode trigger → Check criteria → Email/SMS notification
+- Popular podcasts → Filter by genre → Add to CRM
+
+**Data Enrichment**
+- Import podcast list → Batch lookup → Enrich database
+- RSS URLs → Find podcast metadata → Update records
+
+## API Rate Limits
+
+Taddy API uses a monthly request quota. Check your usage at [taddy.org/dashboard](https://taddy.org/dashboard).
+
+**Transcript generation** consumes transcript credits separately from API requests. Monitor your credit balance to avoid interruptions.
+
+## Support & Resources
+
+- **Taddy API Documentation:** [taddy.org/developers/podcast-api](https://taddy.org/developers/podcast-api)
+- **GraphQL Schema:** [ax0.taddy.org/docs/schema.graphql](https://ax0.taddy.org/docs/schema.graphql)
+- **Support:** Contact Taddy support or visit [taddy.org](https://taddy.org)
+- **GitHub Repository:** [github.com/taddyorg/podcast-data-zapier-integration](https://github.com/taddyorg/podcast-data-zapier-integration)
 
 ## Development
 
-### Project Structure
+Interested in contributing? See [CLAUDE.md](CLAUDE.md) for development documentation and architecture details.
 
-```
-.
-├── authentication.js           # API Key auth (userId + apiKey)
-├── index.js                   # Main entry point
-├── triggers/
-│   ├── new_episode_polling.js # Polling trigger (to be implemented)
-│   └── new_episode.js         # Webhook trigger (placeholder)
-├── searches/
-│   ├── find_podcast.js        # Find podcast ✅
-│   ├── search_podcasts.js     # Search with filters (to be implemented)
-│   ├── search_episodes.js     # Search episodes (to be implemented)
-│   └── find_episode.js        # Find episode (to be implemented)
-├── creates/
-│   └── generate_transcript.js # Generate transcript (to be implemented)
-├── utils/
-│   ├── api.js                 # GraphQL request helpers
-│   ├── constants.js           # Genres, languages, fragments
-│   └── helpers.js             # Shared utilities (to be added)
-├── test/                      # Tests (to be added)
-├── package.json
-└── CLAUDE.md                  # Implementation guide
-```
-
-### Authentication
-
-The integration uses API Key authentication with two fields:
-- **User ID** - Your Taddy API User ID
-- **API Key** - Your Taddy API Key
-
-Get both from your [Taddy Dashboard](https://taddy.org/dashboard).
-
-Authentication is tested via the `getApiRequestsRemaining` GraphQL query.
-
-### GraphQL API
-
-All operations use GraphQL queries sent to `https://api.taddy.org`:
-
-```javascript
-const response = await z.request({
-  url: 'https://api.taddy.org',
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'X-USER-ID': bundle.authData.userId,
-    'X-API-KEY': bundle.authData.apiKey
-  },
-  body: {
-    query: `query { ... }`,
-    variables: { ... }
-  }
-});
-```
-
-### Implemented Operations
-
-#### Find Podcast (Search)
-Find a specific podcast by:
-- UUID (unique identifier)
-- Name (returns most popular if multiple matches)
-- RSS URL (feed URL)
-- iTunes ID (Apple Podcasts ID)
-
-**File:** `searches/find_podcast.js`
-
-**Usage:**
-```javascript
-{
-  input_type: 'name',
-  podcast_name: 'This American Life'
-}
-```
-
-Returns array with single podcast or empty array if not found.
-
-### Zapier CLI Commands
-
-```bash
-# Install Zapier CLI globally
-npm install -g zapier-platform-cli
-
-# Authenticate with Zapier
-zapier login
-
-# Test locally
-zapier test
-
-# Validate integration
-zapier validate
-
-# Deploy to Zapier (when ready)
-zapier push
-
-# View logs
-zapier logs --type=http
-```
-
-## Implementation Guide
-
-See `CLAUDE.md` for comprehensive implementation guide including:
-- Architecture details
-- GraphQL patterns
-- Webhook implementation plan (future)
-- Data models
-- Adding new operations
-
-## Testing
-
-```bash
-# Run all tests
-npm test
-
-# Run tests in watch mode
-npm run test:watch
-```
-
-## Webhook Triggers (Future)
-
-⚠️ **Webhook triggers are currently placeholder only** ⚠️
-
-**Why?** Taddy webhooks don't yet support filtering. Without filtering, thousands of episodes publish hourly which would overwhelm Zapier accounts.
-
-**Timeline:** Danny is building webhook filtering (ETA: end of 2024). We'll implement REST hook triggers once available.
-
-**Webhook events available (for future):**
-- `podcastepisode.created` - New episode published
-- `podcastepisode.updated` - Episode details updated
-- `podcastseries.created` - New podcast added
-- `podcastseries.updated` - Podcast details updated
-
-See `CLAUDE.md` for webhook implementation details.
-
-## Reference
-
-This integration is based on the [n8n integration](./n8n-reference/) built by Taddy. Key differences:
-
-| Feature | n8n | Zapier |
-|---------|-----|--------|
-| Language | TypeScript | JavaScript |
-| API Style | Class-based | Function-based |
-| Parameters | `context.getNodeParameter()` | `bundle.inputData` |
-| Errors | `NodeOperationError` | `z.errors.Error` |
-| Search Returns | Single object or array | Always array |
-
-## Resources
-
-- [Taddy API Docs](https://taddy.org/developers/podcast-api)
-- [Taddy GraphQL Schema](https://ax0.taddy.org/docs/schema.graphql)
-- [Zapier Platform CLI](https://github.com/zapier/zapier-platform/blob/main/packages/cli/README.md)
-- [Zapier Platform Schema](https://github.com/zapier/zapier-platform/blob/main/packages/schema/docs/build/schema.md)
-- [n8n Integration Reference](./n8n-reference/)
+For submission requirements, see [docs/SUBMISSION_CHECKLIST.md](docs/SUBMISSION_CHECKLIST.md).
 
 ## License
 
 MIT
 
-## Contributing
+---
 
-1. Follow the patterns in `searches/find_podcast.js`
-2. Reference n8n implementation for GraphQL queries
-3. Add tests for new operations
-4. Update this README
-5. Submit PR to https://github.com/shimmer-labs/podcast-date-zapier-integration
+**About Taddy:** Taddy provides comprehensive podcast data through a GraphQL API, serving developers, researchers, and businesses building podcast applications and workflows.

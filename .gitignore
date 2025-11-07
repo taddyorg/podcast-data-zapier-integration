@@ -32,3 +32,9 @@ coverage/
 
 # Reference (keep but don't deploy)
 n8n-reference/
+
+# Screenshots and test files
+screenshots/
+*.jpg
+*.png
+*.jpeg
