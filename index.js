@@ -11,7 +11,10 @@ const getTopCharts = require('./searches/get_top_charts');
 const getMultiplePodcasts = require('./searches/get_multiple_podcasts');
 const getMultipleEpisodes = require('./searches/get_multiple_episodes');
 const generateTranscript = require('./creates/generate_transcript');
+const checkApiQuota = require('./creates/check_api_quota');
+const checkTranscriptCredits = require('./creates/check_transcript_credits');
 const newEpisodePoll = require('./triggers/new_episode_polling');
+const newEpisodeWebhook = require('./triggers/new_episode_webhook');
 
 module.exports = {
   version: require('./package.json').version,
@@ -20,7 +23,8 @@ module.exports = {
   authentication: authentication,
 
   triggers: {
-    [newEpisodePoll.key]: newEpisodePoll
+    [newEpisodePoll.key]: newEpisodePoll,
+    [newEpisodeWebhook.key]: newEpisodeWebhook
   },
 
   searches: {
@@ -36,6 +40,8 @@ module.exports = {
   },
 
   creates: {
-    [generateTranscript.key]: generateTranscript
+    [generateTranscript.key]: generateTranscript,
+    [checkApiQuota.key]: checkApiQuota,
+    [checkTranscriptCredits.key]: checkTranscriptCredits
   }
 };
